@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemälde Verkleinerung Rechner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gemälde Verkleinerung Rechner</h1>
+        <h1>für  Emese </h1>
+
+        <form id="calcForm">
+            <label for="newWallSize">Neue Wandgröße (cm):</label>
+            <input type="number" id="newWallSize" name="newWallSize" required>
+            <label for="painting1Width">Breite des ersten Gemäldes (cm):</label>
+            <input type="number" id="painting1Width" name="painting1Width" required>
+            <label for="painting2Width">Breite des zweiten Gemäldes (cm):</label>
+            <input type="number" id="painting2Width" name="painting2Width" required>
+            <button type="button" onclick="calculate()">Berechnen</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+        text-align: center;
+    }
+    
+    form {
+        margin-bottom: 20px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    
+    #result {
+        font-weight: bold;
+    }
+</style>
+
+<script>
+function calculate() {
+    var neueWandgröße = parseFloat(document.getElementById("newWallSize").value);
+    var gemälde1Breite = parseFloat(document.getElementById("painting1Width").value);
+    var gemälde2Breite = parseFloat(document.getElementById("painting2Width").value);
+
+    var ursprünglicheWandgröße = 350;
+    var verhältnis = ursprünglicheWandgröße / neueWandgröße;
+
+    var gemälde1Verkleinerung = gemälde1Breite / verhältnis;
+    var gemälde2Verkleinerung = gemälde2Breite / verhältnis;
+
+    var resultElement = document.getElementById("result");
+    resultElement.innerHTML = "Verkleinerung des " + gemälde1Breite + " cm breiten Gemäldes: " + gemälde1Verkleinerung.toFixed(2) + " cm<br>" +
+                               "Verkleinerung des " + gemälde2Breite + " cm breiten Gemäldes: " + gemälde2Verkleinerung.toFixed(2) + " cm";
+}
+
+</script>
